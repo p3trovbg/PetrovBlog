@@ -2,6 +2,12 @@
 {
     public class Post
     {
+        public Post()
+        {
+            Images = new HashSet<Image>();
+            Videos = new HashSet<Video>();
+        }
+
         public Guid Id { get; set; }
 
         public string Title { get; set; } = string.Empty;
@@ -9,6 +15,8 @@
         public string Content { get; set; } = string.Empty;
 
         public string MainImageUrl { get; set; } = string.Empty;
+
+        public string AuthorId { get; set; }
 
         public ApplicationUser Author { get; set; }
 
