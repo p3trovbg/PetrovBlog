@@ -29,7 +29,7 @@ namespace Blog.Data.EfRepository
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
-        }
+        } 
 
         protected virtual void Dispose(bool disposing)
         {
@@ -38,6 +38,5 @@ namespace Blog.Data.EfRepository
                 this.Context?.Dispose();
             }
         }
-
     }
 }
