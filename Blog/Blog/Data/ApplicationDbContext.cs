@@ -10,5 +10,11 @@ namespace Blog.Data
             : base(options)
         {
         }
+
+        public DbSet<Post> Posts { get; set; }
+
+        public DbSet<Image> Images { get; set; }
+
+        public DbSet<Video> Videos { get; set; }
     }
 }
