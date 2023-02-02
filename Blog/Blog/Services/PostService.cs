@@ -14,13 +14,13 @@ namespace Blog.Services
             this.postRepository = postRepository;
         }
 
-        public async Task<string> Add(ImportPostView model)
+        public async Task<string> Add(ImportPostView model, string userId)
         {
             var newPost = new Post();
             newPost.Title = model.Title;
             newPost.Content = model.Content;
             newPost.CreatedOn = DateTime.UtcNow;
-            newPost.AuthorId = model.AuthorId;
+            newPost.AuthorId = userId;
 
             await this.postRepository.AddAsync(newPost);
             await this.postRepository.SaveChangesAsync();

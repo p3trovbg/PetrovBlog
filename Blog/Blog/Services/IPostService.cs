@@ -4,7 +4,7 @@ namespace Blog.Services
 {
     public interface IPostService
     {
-        Task<string> Add(ImportPostView model);
+        Task<string> Add(ImportPostView model, string userId);
 
         Task Edit(EditPostView model);
 

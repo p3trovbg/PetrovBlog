@@ -1,5 +1,7 @@
 using Blog.Data;
+using Blog.Data.EfRepository;
 using Blog.Data.Models;
+using Blog.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -65,7 +67,10 @@ namespace Blog
                     };
                 });
 
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddSingleton(configuration);
+
+            services.AddTransient<IPostService, PostService>();
         }
 
         private static void Configure(WebApplication app)

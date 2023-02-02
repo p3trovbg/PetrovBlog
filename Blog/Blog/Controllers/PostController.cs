@@ -4,6 +4,7 @@ using Blog.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Blog.Controllers
 {
@@ -21,6 +22,7 @@ namespace Blog.Controllers
             this.userManager = userManager;
         }
 
+        [HttpPost]
         [Route(nameof(Add))]
         public async Task<IActionResult> Add(ImportPostView model)
         {
@@ -29,12 +31,14 @@ namespace Blog.Controllers
                 return BadRequest(model);
             }
 
-            model.AuthorId = this.userManager.GetUserId(this.User);
-            var postId = await this.postService.Add(model);
+           var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var postId = await this.postService.Add(model, userId);
 
             return this.Ok(postId);
         }
 
+        [HttpPut]
+        [Route(nameof(Edit))]
         public async Task<IActionResult> Edit(EditPostView model)
         {
             if (!this.ModelState.IsValid)
@@ -47,6 +51,8 @@ namespace Blog.Controllers
             return this.Ok(model.Id);
         }
 
+        [HttpDelete]
+        [Route(nameof(Delete))]
         public async Task<IActionResult> Delete(string id)
         {
             await this.postService.Delete(id);
