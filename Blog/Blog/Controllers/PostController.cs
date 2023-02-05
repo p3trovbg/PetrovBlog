@@ -31,7 +31,7 @@ namespace Blog.Controllers
                 return BadRequest(model);
             }
 
-           var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = this.GetUserId();
             var postId = await this.postService.Add(model, userId);
 
             return this.Ok(postId);
