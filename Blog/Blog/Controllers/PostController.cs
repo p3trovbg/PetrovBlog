@@ -27,7 +27,8 @@ namespace Blog.Controllers
         [Route(nameof(All))]
         public async Task<IActionResult> All()
         {
-            return this.Ok("yes");
+            var all = await this.postService.All<BasePostViewModel>();
+            return this.Ok(all);
         }
 
         [HttpGet("{id}")]
