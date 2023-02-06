@@ -1,3 +1,4 @@
+using AutoMapper;
 using Blog.Data;
 using Blog.Data.EfRepository;
 using Blog.Data.Models;
@@ -66,6 +67,13 @@ namespace Blog
                         IssuerSigningKey = new SymmetricSecurityKey(key)
                     };
                 });
+
+            var mapperConfig = new MapperConfiguration(mc => {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddSingleton(configuration);

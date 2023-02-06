@@ -22,6 +22,21 @@ namespace Blog.Controllers
             this.userManager = userManager;
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        [Route(nameof(All))]
+        public async Task<IActionResult> All()
+        {
+            return this.Ok("yes");
+        }
+
+        [HttpGet("{id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Get(string id)
+        {
+            return this.Ok("id is return");
+        }
+
         [HttpPost]
         [Route(nameof(Add))]
         public async Task<IActionResult> Add(ImportPostView model)

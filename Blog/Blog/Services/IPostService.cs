@@ -9,5 +9,9 @@ namespace Blog.Services
         Task Edit(EditPostView model);
 
         Task Delete(string id);
+
+        Task<IEnumerable<T>> All<T>();
+
+        Task<T> GetById<T>(string id);
     }
 }

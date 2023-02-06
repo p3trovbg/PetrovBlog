@@ -2,6 +2,11 @@
 {
     public class Image
     {
+        public Image()
+        {
+            Id = Guid.NewGuid();
+        }
+
         public Guid Id { get; set; }
 
         public string Url { get; set; }

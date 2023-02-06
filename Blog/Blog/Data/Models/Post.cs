@@ -4,6 +4,7 @@
     {
         public Post()
         {
+            Id = Guid.NewGuid();
             Images = new HashSet<Image>();
             Videos = new HashSet<Video>();
         }
