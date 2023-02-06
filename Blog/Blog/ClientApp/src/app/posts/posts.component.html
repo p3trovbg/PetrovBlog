@@ -1,1 +1,12 @@
 <p>posts works!</p>
+<p *ngIf="!posts"><em>Loading...</em></p>
+<ul class="posts">
+  <li *ngFor="let post of posts">
+    <p>
+      Title: {{post.title}}
+      <br/>
+      Author: {{post.author.userName}}
+    </p>
+  </li>
+</ul>
+  
