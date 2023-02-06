@@ -34,15 +34,22 @@ namespace Blog.Services
         }
         public async Task<T> GetById<T>(string id)
         {
-            var post = await this.postRepository.AllAsNoTracking().Where(x => x.Id.ToString() == id).FirstOrDefaultAsync();
-            IsNull(post);
+            var post = await this.postRepository.AllAsNoTracking()
+                .Where(x => x.Id.ToString() == id)
+                .Include(x => x.Author)
+                .Include(x => x.Videos)
+                .Include(x => x.Images)
+                .FirstOrDefaultAsync();
 
+            IsNull(post);
             return this.mapper.Map<T>(post);
         }
 
         public async Task<IEnumerable<T>> All<T>()
         {
-            var posts = await this.postRepository.AllAsNoTracking().ToListAsync();
+            var posts = await this.postRepository.AllAsNoTracking()
+                .Include(x => x.Author)
+                .ToListAsync();
 
             return this.mapper.Map<IEnumerable<T>>(posts);
         }

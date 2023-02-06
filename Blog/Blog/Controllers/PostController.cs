@@ -36,6 +36,7 @@ namespace Blog.Controllers
         public async Task<IActionResult> Get(string id)
         {
             var targetPost = await this.postService.GetById<DetailPostViewModel>(id);
+
             return this.Ok(targetPost);
         }
 

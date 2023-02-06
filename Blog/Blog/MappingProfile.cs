@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Blog.Data.Models;
+using Blog.Models.Identity;
 using Blog.Models.Post;
+using Blog.Models.PostContent;
 
 namespace Blog
 {
@@ -12,6 +14,16 @@ namespace Blog
                 .ForMember(
                 d => d.CreatedOn,
                 mo => mo.MapFrom(x => DateTime.UtcNow));
+
+            CreateMap<Post, DetailPostViewModel>();
+
+            CreateMap<Post, BasePostViewModel>();
+
+            CreateMap<ApplicationUser, BaseUserViewModel>();
+
+            CreateMap<Video, ContentViewModel>();
+
+            CreateMap<Image, ContentViewModel>();
         }
     }
 }
