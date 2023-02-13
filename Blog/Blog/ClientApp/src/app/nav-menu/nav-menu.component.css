@@ -1,3 +1,9 @@
+nav {
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  margin-bottom: 15px !important;
+}
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -5,14 +11,18 @@ a.navbar-brand {
 }
 
 html {
-  font-size: 14px;
+  font-size: 16px;
 }
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 26px;
   }
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  box-shadow: 0 .25rem .75rem rgba(138, 57, 57, 0.05);
+}
+
+nav {
+  background-color: rgb(13 110 253 / 17%) !important;
 }

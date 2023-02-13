@@ -1,0 +1,16 @@
+<div class="row justify-content-md-center">
+  <div class="col-4 align-middle">
+    <h3>Login as Administrator</h3>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="form-group">
+            <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+          <br>
+          <div class="form-group">
+            <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <hr>
+          <button type="submit" class="btn btn-success">Login</button>
+        </form>
+  </div>
+</div>

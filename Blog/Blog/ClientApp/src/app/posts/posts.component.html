@@ -1,12 +1,14 @@
-<p>posts works!</p>
+<h1>Posts</h1>
 <p *ngIf="!posts"><em>Loading...</em></p>
-<ul class="posts">
-  <li *ngFor="let post of posts">
-    <p>
-      Title: {{post.title}}
-      <br/>
-      Author: {{post.author.userName}}
-    </p>
-  </li>
-</ul>
-  
+<div *ngFor="let post of posts" class="container">
+    <div class="card col-sm-10">
+      <img src="{{post.mainImageUrl}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{post.title}}</h5>
+        <p class="card-text">Author: {{post.author.userName}}</p>
+      </div>
+    </div>
+    <a class="btn" [routerLink]="['/']">Details</a>
+    <a class="btn" [routerLink]="['/']" *ngIf="isLogin">Edit</a>
+    <hr/>
+</div>
