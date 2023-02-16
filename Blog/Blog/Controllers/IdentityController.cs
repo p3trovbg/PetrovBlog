@@ -56,14 +56,14 @@ namespace Blog.Controllers
 
             if (user == null)
             {
-                return Unauthorized();
+                return Unauthorized("Invalid email!");
             }
 
             var isPasswordValid = await this.userManager.CheckPasswordAsync(user, model.Password);
 
             if (!isPasswordValid)
             {
-                return Unauthorized();
+                return Unauthorized("Invalid password!");
             }
 
             var token = generateJwtToken(user);

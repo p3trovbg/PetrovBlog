@@ -3,7 +3,7 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">Blog</a>
+      <a class="navbar-brand" [routerLink]="['/']">Petrov's blog</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -25,20 +25,20 @@
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/posts']"
+            <a [routerLink]="['/posts']"
               >Posts</a
             >
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/about']"
+            <a [routerLink]="['/about']"
               >About me</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-red" *ngIf="isLogin()" (click)="logout()"
+          <li *ngIf="isLogin" class="nav-item" [routerLinkActive]="['link-active']">
+            <a (click)="logout()"
               >Logout</a
             >
           </li>

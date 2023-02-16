@@ -10,6 +10,7 @@ import { LoginService } from 'src/common/login.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  errorMessage = '';
 
   constructor(
     private fb: FormBuilder,
@@ -24,13 +25,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login() {
-    this.loginService.login(this.loginForm.value)
-    .subscribe(data => {
-      this.loginService.saveToken(data['token']);
-      this.router.navigateByUrl('/');
-    })
-  }
+  login() {    
+    this.loginService.login(this.loginForm.value).subscribe({
+      next: () => this.router.navigateByUrl('/'),
+      error: (response) => this.errorMessage = response.error,
+    });
+    }
+  
 
   get username() {
     return this.loginForm.get('email');

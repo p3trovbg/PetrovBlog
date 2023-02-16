@@ -13,10 +13,15 @@ var NavMenuComponent = /** @class */ (function () {
         this.isExpanded = false;
         this.loginService = loginService;
         this.router = router;
+        this.loginService;
     }
-    NavMenuComponent.prototype.isLogin = function () {
-        return this.loginService.isLogin;
-    };
+    Object.defineProperty(NavMenuComponent.prototype, "isLogin", {
+        get: function () {
+            return this.loginService.isLogged;
+        },
+        enumerable: false,
+        configurable: true
+    });
     NavMenuComponent.prototype.logout = function () {
         this.loginService.logout();
         this.router.navigateByUrl('/');

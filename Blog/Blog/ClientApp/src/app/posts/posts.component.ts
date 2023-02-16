@@ -9,25 +9,23 @@ import { LoginService } from 'src/common/login.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  isLogin = false;
-  loginService: LoginService;
   postsUrl: string;
   baseUrl: string;
   http: HttpClient;
   posts: Post[] = [];
   selectedPost?: Post;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, loginService: LoginService) {
+  constructor(private loginService: LoginService, http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
-    this.loginService = loginService;
     this.baseUrl = baseUrl;
     this.postsUrl = 'https://localhost:44366/post/all';
-
   }
+
+  get isLogin() {
+    return this.loginService.isLogged;
+  }
+
   ngOnInit(): void {
-    if (this.loginService.getToken() != null) {
-      this.isLogin = true;
-    }
     this.getAll();
   }
 

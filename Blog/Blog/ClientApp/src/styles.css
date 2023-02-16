@@ -4,5 +4,14 @@ body {
   padding: 0;
 }
 
+h1, h2, h3, h4 {
+  margin: 10px;
+  color: #41464b;
+  text-decoration: none;
+  font-size: 30px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
 
 

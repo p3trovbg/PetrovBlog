@@ -12,18 +12,21 @@ exports.__esModule = true;
 exports.PostsComponent = void 0;
 var core_1 = require("@angular/core");
 var PostsComponent = /** @class */ (function () {
-    function PostsComponent(http, baseUrl, loginService) {
-        this.isLogin = false;
+    function PostsComponent(loginService, http, baseUrl) {
+        this.loginService = loginService;
         this.posts = [];
         this.http = http;
-        this.loginService = loginService;
         this.baseUrl = baseUrl;
         this.postsUrl = 'https://localhost:44366/post/all';
     }
+    Object.defineProperty(PostsComponent.prototype, "isLogin", {
+        get: function () {
+            return this.loginService.isLogged;
+        },
+        enumerable: false,
+        configurable: true
+    });
     PostsComponent.prototype.ngOnInit = function () {
-        if (this.loginService.getToken() != null) {
-            this.isLogin = true;
-        }
         this.getAll();
     };
     PostsComponent.prototype.getAll = function () {
@@ -40,7 +43,7 @@ var PostsComponent = /** @class */ (function () {
             templateUrl: './posts.component.html',
             styleUrls: ['./posts.component.css']
         }),
-        __param(1, core_1.Inject('BASE_URL'))
+        __param(2, core_1.Inject('BASE_URL'))
     ], PostsComponent);
     return PostsComponent;
 }());

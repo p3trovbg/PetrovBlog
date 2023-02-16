@@ -19,6 +19,7 @@ var home_component_1 = require("./home/home.component");
 var posts_component_1 = require("./posts/posts.component");
 var about_me_component_1 = require("./about-me/about-me.component");
 var login_component_1 = require("./login/login.component");
+var side_bar_component_1 = require("./side-bar/side-bar.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -30,7 +31,8 @@ var AppModule = /** @class */ (function () {
                 home_component_1.HomeComponent,
                 posts_component_1.PostsComponent,
                 about_me_component_1.AboutMeComponent,
-                login_component_1.LoginComponent
+                login_component_1.LoginComponent,
+                side_bar_component_1.SideBarComponent
             ],
             imports: [
                 icon_1.MatIconModule,

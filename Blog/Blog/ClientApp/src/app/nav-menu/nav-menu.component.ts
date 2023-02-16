@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/common/login.service';
 
@@ -15,12 +15,13 @@ export class NavMenuComponent {
   constructor(loginService: LoginService, router: Router) {
       this.loginService = loginService;
       this.router = router;
+      this.loginService
   }
 
-  isLogin() {
-    return this.loginService.isLogin;
+  get isLogin() {
+    return this.loginService.isLogged;
   }
-
+  
   logout() {
     this.loginService.logout();
     this.router.navigateByUrl('/');

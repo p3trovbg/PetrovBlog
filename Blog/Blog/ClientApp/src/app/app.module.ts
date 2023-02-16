@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { PostsComponent } from './posts/posts.component';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { LoginComponent } from './login/login.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     PostsComponent,
     AboutMeComponent,
-    LoginComponent
+    LoginComponent,
+    SideBarComponent
   ],
   imports: [
     MatIconModule,

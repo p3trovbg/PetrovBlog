@@ -8,26 +8,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.LoginService = void 0;
 var core_1 = require("@angular/core");
+var rxjs_1 = require("rxjs");
 var LoginService = /** @class */ (function () {
     function LoginService(http) {
         this.tokenName = 'token';
-        this.isLogin = false;
         this.url = 'https://localhost:44366/identity/login';
+        this.isLogged = false;
         this.http = http;
+        this.isLogged = this.getToken() ? true : false;
     }
     LoginService.prototype.login = function (user) {
-        return this.http.post(this.url, user);
+        var _this = this;
+        return this.http.post(this.url, user)
+            .pipe(rxjs_1.map(function (x) { return _this.saveToken(x); }));
     };
     LoginService.prototype.saveToken = function (token) {
         localStorage.setItem(this.tokenName, token);
-        this.isLogin = true;
+        this.isLogged = true;
     };
     LoginService.prototype.getToken = function () {
         return localStorage.getItem(this.tokenName);
     };
     LoginService.prototype.logout = function () {
         localStorage.removeItem(this.tokenName);
-        this.isLogin = false;
+        this.isLogged = false;
     };
     LoginService = __decorate([
         core_1.Injectable({

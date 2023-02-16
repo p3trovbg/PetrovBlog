@@ -14,6 +14,7 @@ var LoginComponent = /** @class */ (function () {
         this.fb = fb;
         this.router = router;
         this.loginService = loginService;
+        this.errorMessage = '';
         this.loginForm = this.fb.group({
             'email': ['', [forms_1.Validators.required]],
             'password': ['', [forms_1.Validators.required]]
@@ -23,10 +24,9 @@ var LoginComponent = /** @class */ (function () {
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
-        this.loginService.login(this.loginForm.value)
-            .subscribe(function (data) {
-            _this.loginService.saveToken(data['token']);
-            _this.router.navigateByUrl('/');
+        this.loginService.login(this.loginForm.value).subscribe({
+            next: function () { return _this.router.navigateByUrl('/'); },
+            error: function (response) { return _this.errorMessage = response.error; }
         });
     };
     Object.defineProperty(LoginComponent.prototype, "username", {
