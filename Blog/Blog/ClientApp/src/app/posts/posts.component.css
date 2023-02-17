@@ -1,22 +1,28 @@
 .btn {
-    margin: 6px;
-    top:50%;
-    background-color:hsl(142, 6%, 26%);
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: #fff;
-    border:none; 
-    border-radius:15px; 
-    padding:15px;
-    min-height:30px; 
-    min-width: 120px;
-  }
+  margin: 6px;
+  top:50%;
+  background-color:hsl(142, 6%, 26%);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #fff;
+  border:none; 
+  border-radius:15px; 
+  padding:15px;
+}
 
   .btn:hover {
-    -webkit-transform: translateX(6px);
-  transform: translateX(6px);
+    -webkit-transform: translateY(-6px);
+  transform: translateY(-6px);
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   opacity: 1;
+}
+
+.img {
+  border-bottom: 4px inset rgba(13, 109, 253, 0.349);
+}
+
+.card-body {
+  background-color: rgb(51 139 212 / 12%);
 }
 
 .posts {

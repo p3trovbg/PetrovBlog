@@ -20,6 +20,7 @@ var posts_component_1 = require("./posts/posts.component");
 var about_me_component_1 = require("./about-me/about-me.component");
 var login_component_1 = require("./login/login.component");
 var side_bar_component_1 = require("./side-bar/side-bar.component");
+var post_details_component_1 = require("./post-details/post-details.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -32,7 +33,8 @@ var AppModule = /** @class */ (function () {
                 posts_component_1.PostsComponent,
                 about_me_component_1.AboutMeComponent,
                 login_component_1.LoginComponent,
-                side_bar_component_1.SideBarComponent
+                side_bar_component_1.SideBarComponent,
+                post_details_component_1.PostDetailsComponent
             ],
             imports: [
                 icon_1.MatIconModule,

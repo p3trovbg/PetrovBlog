@@ -37,8 +37,8 @@
               >About me</a
             >
           </li>
-          <li *ngIf="isLogin" class="nav-item" [routerLinkActive]="['link-active']">
-            <a (click)="logout()"
+          <li *ngIf="isLogin" class="nav-item">
+            <a (click)="logout()" [routerLink]="['']"
               >Logout</a
             >
           </li>

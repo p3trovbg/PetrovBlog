@@ -3,13 +3,18 @@
 <p *ngIf="!posts"><em>Loading...</em></p>
 <div *ngFor="let post of posts" class="posts">
     <div class="card col-sm-10 post">
-      <img src="{{post.mainImageUrl}}" class="card-img-top" alt="...">
+      <img src="{{post.mainImageUrl}}" class="card-img-top img" alt="...">
       <div class="card-body">
+        <mat-icon>edit</mat-icon>
+        <span>{{post.createdOn | date}}</span>
+        <span class="m-1">|</span>
+        <mat-icon>person</mat-icon>
+        <span>{{post.author.userName}}</span>
+        <hr>
         <h5 class="card-title">{{post.title}}</h5>
-        <p class="card-text">Author: {{post.author.userName}}</p>
       </div>
+      <a class="btn" routerLink='/detail/{{post.id}}'>Details</a>
+      <a class="btn" [routerLink]="['/']" *ngIf="isLogin">Edit</a>
     </div>
-    <a class="btn" [routerLink]="['/']">Details</a>
-    <a class="btn" [routerLink]="['/']" *ngIf="isLogin">Edit</a>
     <hr/>
 </div>
