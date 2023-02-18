@@ -15,7 +15,7 @@ var PostService = /** @class */ (function () {
         this.allUrl = '/post/all';
         this.addPostUrl = '/post/add';
         this.editPostUrl = '/post/edit';
-        this.deletePostUrl = '/post/delete';
+        this.deletePostUrl = '/post/delete/';
     }
     PostService.prototype.getById = function (id) {
         return this.httpClient.get(this.postByIdUrl + id);
@@ -30,7 +30,7 @@ var PostService = /** @class */ (function () {
         return this.httpClient.put(this.addPostUrl, editPost);
     };
     PostService.prototype["delete"] = function (id) {
-        return this.httpClient["delete"](this.deletePostUrl);
+        return this.httpClient["delete"](this.deletePostUrl + id);
     };
     PostService = __decorate([
         core_1.Injectable({

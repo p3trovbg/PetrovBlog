@@ -9,8 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class PostDetailsComponent implements OnInit {
 
   constructor(
-    private activatedRoute: ActivatedRoute
-    private ) { }
+    private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit(): void {
   }

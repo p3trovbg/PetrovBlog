@@ -20,9 +20,13 @@ var LoginService = /** @class */ (function () {
     LoginService.prototype.login = function (user) {
         var _this = this;
         return this.http.post(this.url, user)
-            .pipe(rxjs_1.map(function (x) { return _this.saveToken(x); }));
+            .pipe(rxjs_1.tap(function (x) { return _this.saveToken(x); }));
     };
-    LoginService.prototype.saveToken = function (token) {
+    LoginService.prototype.saveToken = function (response) {
+        if (response == null || response == undefined) {
+            return;
+        }
+        var token = response.token;
         localStorage.setItem(this.tokenName, token);
         this.isLogged = true;
     };

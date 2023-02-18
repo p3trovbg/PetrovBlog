@@ -8,7 +8,7 @@ namespace Blog.Controllers
     {
         protected string GetUserId()
         {
-            return this.User.Claims.First(i => i.Type == "id").Value;
+            return this.User.Claims.FirstOrDefault(i => i.Type == "id")?.Value!;
         }
     }
 }

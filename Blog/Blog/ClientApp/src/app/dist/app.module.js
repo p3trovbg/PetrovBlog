@@ -21,6 +21,7 @@ var about_me_component_1 = require("./about-me/about-me.component");
 var login_component_1 = require("./login/login.component");
 var side_bar_component_1 = require("./side-bar/side-bar.component");
 var post_details_component_1 = require("./post-details/post-details.component");
+var auth_interceptor_1 = require("./common/auth-interceptor");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -44,7 +45,13 @@ var AppModule = /** @class */ (function () {
                 app_routing_module_1.AppRoutingModule,
                 forms_1.ReactiveFormsModule
             ],
-            providers: [],
+            providers: [
+                {
+                    provide: http_1.HTTP_INTERCEPTORS,
+                    useClass: auth_interceptor_1.AuthInterceptor,
+                    multi: true
+                }
+            ],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);

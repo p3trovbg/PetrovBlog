@@ -1,7 +1,7 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, of } from 'rxjs';
-import { LoginService } from 'src/common/login.service';
+import { LoginService } from 'src/app/common/login.service';
 
 @Component({
   selector: 'app-posts',

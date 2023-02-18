@@ -68,7 +68,7 @@ namespace Blog.Controllers
 
             var token = generateJwtToken(user);
 
-            return this.Ok(new { token = token });
+            return this.Ok(new { token = token} );
         }
 
         private string generateJwtToken(ApplicationUser user)

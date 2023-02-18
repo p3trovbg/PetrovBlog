@@ -10,7 +10,7 @@ export class PostService {
   private allUrl = '/post/all'
   private addPostUrl ='/post/add'
   private editPostUrl ='/post/edit'
-  private deletePostUrl ='/post/delete'
+  private deletePostUrl ='/post/delete/'
 
   constructor(private httpClient: HttpClient) { 
   }
@@ -32,7 +32,7 @@ export class PostService {
   }
 
   delete(id: string): Observable<unknown> {
-    return this.httpClient.delete<unknown>(this.deletePostUrl)
+    return this.httpClient.delete<unknown>(this.deletePostUrl + id)
   }
 }
 

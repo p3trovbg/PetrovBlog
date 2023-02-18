@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/common/login.service';
+import { LoginService } from 'src/app/common/login.service';
 
 @Component({
   selector: 'app-nav-menu',
