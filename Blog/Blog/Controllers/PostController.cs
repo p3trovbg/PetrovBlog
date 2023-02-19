@@ -35,9 +35,15 @@ namespace Blog.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Get(string id)
         {
-            var targetPost = await this.postService.GetById<DetailPostViewModel>(id);
-
-            return this.Ok(targetPost);
+            try
+            {
+                var targetPost = await this.postService.GetById<DetailPostViewModel>(id);
+                return this.Ok(targetPost);
+            }
+            catch(Exception ex)
+            {
+                return this.NotFound(ex.Message);
+            }
         }
 
         [HttpPost]

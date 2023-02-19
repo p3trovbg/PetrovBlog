@@ -5,19 +5,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 exports.__esModule = true;
 exports.PostsComponent = void 0;
 var core_1 = require("@angular/core");
 var PostsComponent = /** @class */ (function () {
-    function PostsComponent(loginService, http, baseUrl) {
+    function PostsComponent(loginService, http, postService) {
         this.loginService = loginService;
+        this.postService = postService;
         this.posts = [];
         this.http = http;
-        this.baseUrl = baseUrl;
-        this.postsUrl = 'https://localhost:44366/post/all';
     }
     Object.defineProperty(PostsComponent.prototype, "isLogin", {
         get: function () {
@@ -31,19 +27,15 @@ var PostsComponent = /** @class */ (function () {
     };
     PostsComponent.prototype.getAll = function () {
         var _this = this;
-        this.getPosts()
+        this.postService.all()
             .subscribe(function (posts) { return _this.posts = posts; });
-    };
-    PostsComponent.prototype.getPosts = function () {
-        return this.http.get(this.postsUrl);
     };
     PostsComponent = __decorate([
         core_1.Component({
             selector: 'app-posts',
             templateUrl: './posts.component.html',
             styleUrls: ['./posts.component.css']
-        }),
-        __param(2, core_1.Inject('BASE_URL'))
+        })
     ], PostsComponent);
     return PostsComponent;
 }());

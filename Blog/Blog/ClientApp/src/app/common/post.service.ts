@@ -1,54 +1,43 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, of, throwError } from 'rxjs';
+import { GlobalComponent } from '../global-component';
+import { IPost } from './shared/post';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  private postByIdUrl = '/post/get/'
+  private url = '/post/'
   private allUrl = '/post/all'
-  private addPostUrl ='/post/add'
-  private editPostUrl ='/post/edit'
-  private deletePostUrl ='/post/delete/'
 
   constructor(private httpClient: HttpClient) { 
   }
 
-  getById(id: string): Observable<Post> {
-    return this.httpClient.get<Post>(this.postByIdUrl + id);
+  getById<T>(id: string): Observable<T> {
+    return this.httpClient.get<T>(GlobalComponent.appUrl + this.url + id);
   }
 
-  all(): Observable<Post[]> {
-    return this.httpClient.get<Post[]>(this.allUrl);
+  all<T>(): Observable<T> {
+    return this.httpClient.get<T>(GlobalComponent.appUrl + this.allUrl);
   }
 
-  add(newPost: Post): Observable<string> {
-    return this.httpClient.post<string>(this.addPostUrl, newPost);
+  add(newPost: IPost): Observable<string> { // should has interface
+    return this.httpClient.post<string>(GlobalComponent.appUrl + this.url, newPost);
   }
 
-  edit(editPost: Post): Observable<string> { // in interface should has id
-    return this.httpClient.put<string>(this.addPostUrl, editPost);
+  edit(editPost: IPost): Observable<string> { // should has interface with id
+    return this.httpClient.put<string>(GlobalComponent.appUrl + this.url, editPost);
   }
 
   delete(id: string): Observable<unknown> {
-    return this.httpClient.delete<unknown>(this.deletePostUrl + id)
+    return this.httpClient.delete<unknown>(GlobalComponent.appUrl + this.url + id)
+  }
+
+  private handleError(error: any) { 
+    let errMsg = (error.message) ? error.message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    return error;
   }
 }
 
-
-interface Post {
-  id: string;
-  title: string;
-  mainImageUrl: string;
-  summary: string;
-  author: Author;
-  createdOn: string;
-  updatedOn: string;
-}
-
-interface Author {
-  id: string;
-  userName: string;
-}
 

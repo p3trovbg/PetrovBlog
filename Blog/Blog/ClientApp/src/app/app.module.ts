@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { AuthInterceptor } from './common/auth-interceptor';
+import { NgImageSliderModule } from 'ng-image-slider';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { AuthInterceptor } from './common/auth-interceptor';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgImageSliderModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {

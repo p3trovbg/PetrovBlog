@@ -2,6 +2,8 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, of } from 'rxjs';
 import { LoginService } from 'src/app/common/login.service';
+import { PostService } from '../common/post.service';
+import { IPost } from '../common/shared/post';
 
 @Component({
   selector: 'app-posts',
@@ -9,16 +11,15 @@ import { LoginService } from 'src/app/common/login.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  postsUrl: string;
-  baseUrl: string;
   http: HttpClient;
-  posts: Post[] = [];
-  selectedPost?: Post;
+  posts: IPost[] = [];
+  selectedPost?: IPost;
 
-  constructor(private loginService: LoginService, http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(
+    private loginService: LoginService,
+     http: HttpClient,
+      private postService: PostService) {
     this.http = http;
-    this.baseUrl = baseUrl;
-    this.postsUrl = 'https://localhost:44366/post/all';
   }
 
   get isLogin() {
@@ -30,27 +31,7 @@ export class PostsComponent implements OnInit {
   }
 
   getAll(): void {
-    this.getPosts()
+    this.postService.all<IPost[]>()
     .subscribe(posts => this.posts = posts);
-  }
-
-  getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.postsUrl);
-  }  
-}
-
-
-interface Post {
-  id: string;
-  title: string;
-  mainImageUrl: string;
-  summary: string;
-  author: Author;
-  createdOn: string;
-  updatedOn: string;
-}
-
-interface Author {
-  id: string;
-  userName: string;
+  } 
 }

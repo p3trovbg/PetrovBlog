@@ -1,5 +1,4 @@
 .btn {
-  margin: 6px;
   top:50%;
   background-color:hsl(142, 6%, 26%);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -7,6 +6,8 @@
   border:none; 
   border-radius:15px; 
   padding:15px;
+  width: 6rem;
+  float: right;
 }
 
   .btn:hover {
@@ -31,7 +32,6 @@
 }
 
 .post {
-  border: 15px inset rgb(82 106 139);
   box-shadow: 10px -10px rgba(13, 109, 253, 0.349);
 }
 

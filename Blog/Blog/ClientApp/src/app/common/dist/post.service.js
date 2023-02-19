@@ -8,29 +8,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.PostService = void 0;
 var core_1 = require("@angular/core");
+var global_component_1 = require("../global-component");
 var PostService = /** @class */ (function () {
     function PostService(httpClient) {
         this.httpClient = httpClient;
-        this.postByIdUrl = '/post/get/';
+        this.url = '/post/';
         this.allUrl = '/post/all';
-        this.addPostUrl = '/post/add';
-        this.editPostUrl = '/post/edit';
-        this.deletePostUrl = '/post/delete/';
     }
     PostService.prototype.getById = function (id) {
-        return this.httpClient.get(this.postByIdUrl + id);
+        return this.httpClient.get(global_component_1.GlobalComponent.appUrl + this.url + id);
     };
     PostService.prototype.all = function () {
-        return this.httpClient.get(this.allUrl);
+        return this.httpClient.get(global_component_1.GlobalComponent.appUrl + this.allUrl);
     };
     PostService.prototype.add = function (newPost) {
-        return this.httpClient.post(this.addPostUrl, newPost);
+        return this.httpClient.post(global_component_1.GlobalComponent.appUrl + this.url, newPost);
     };
     PostService.prototype.edit = function (editPost) {
-        return this.httpClient.put(this.addPostUrl, editPost);
+        return this.httpClient.put(global_component_1.GlobalComponent.appUrl + this.url, editPost);
     };
     PostService.prototype["delete"] = function (id) {
-        return this.httpClient["delete"](this.deletePostUrl + id);
+        return this.httpClient["delete"](global_component_1.GlobalComponent.appUrl + this.url + id);
+    };
+    PostService.prototype.handleError = function (error) {
+        var errMsg = (error.message) ? error.message : error.status ? error.status + " - " + error.statusText : 'Server error';
+        return error;
     };
     PostService = __decorate([
         core_1.Injectable({

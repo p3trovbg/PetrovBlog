@@ -1,1 +1,22 @@
-<h1>Details</h1>
+<p class="alert alert-warning" *ngIf="errorMessage">{{errorMessage}}</p>
+<div class="post" *ngIf="post">
+    <h1>{{post.title}}</h1>
+    <button *ngIf="isLogin" class="btn" type="button" routerLink='/edit/{{post.id}}'>Edit</button>
+    <img class="main-image" src="{{post.mainImageUrl}}">
+    <hr>
+    <div *ngIf="post.images" class="image-pagination">
+        <ng-image-slider #nav
+        [images]="post.images"
+        [infinite]="false"
+        [autoSlide]="1"
+        [imageSize]="{
+            width: '265rem'
+        }"
+        slideImage="1"
+        ></ng-image-slider>
+    </div>
+    <hr>
+    <div class="content">
+        <p>{{post.content}}</p>
+    </div>
+</div>

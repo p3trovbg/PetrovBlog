@@ -38,6 +38,11 @@
             >
           </li>
           <li *ngIf="isLogin" class="nav-item">
+            <a [routerLink]="['/create']"
+              >Create post</a
+            >
+          </li>
+          <li *ngIf="isLogin" class="nav-item">
             <a (click)="logout()" [routerLink]="['']"
               >Logout</a
             >

@@ -9,10 +9,32 @@ exports.__esModule = true;
 exports.PostDetailsComponent = void 0;
 var core_1 = require("@angular/core");
 var PostDetailsComponent = /** @class */ (function () {
-    function PostDetailsComponent(activatedRoute) {
+    function PostDetailsComponent(activatedRoute, postService, loginService) {
         this.activatedRoute = activatedRoute;
+        this.postService = postService;
+        this.loginService = loginService;
+        this.postId = this.activatedRoute.snapshot.paramMap.get('id');
     }
+    Object.defineProperty(PostDetailsComponent.prototype, "isLogin", {
+        get: function () {
+            return this.loginService.isLogged;
+        },
+        enumerable: false,
+        configurable: true
+    });
     PostDetailsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.postService.getById(this.postId)
+            .subscribe({
+            next: function (post) {
+                _this.post = post;
+                _this.post.images.map(function (x) {
+                    x.image = x.url,
+                        x.thumbImage = x.url;
+                });
+            },
+            error: function (err) { return _this.errorMessage = err.error; }
+        });
     };
     PostDetailsComponent = __decorate([
         core_1.Component({

@@ -10,6 +10,8 @@ exports.AppRoutingModule = void 0;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var about_me_component_1 = require("./about-me/about-me.component");
+var create_post_component_1 = require("./create-post/create-post.component");
+var edit_post_component_1 = require("./edit-post/edit-post.component");
 var home_component_1 = require("./home/home.component");
 var login_component_1 = require("./login/login.component");
 var post_details_component_1 = require("./post-details/post-details.component");
@@ -19,7 +21,9 @@ var routes = [
     { path: 'posts', component: posts_component_1.PostsComponent },
     { path: 'about', component: about_me_component_1.AboutMeComponent },
     { path: 'login', component: login_component_1.LoginComponent },
+    { path: 'create', component: create_post_component_1.CreatePostComponent },
     { path: 'detail/:id', component: post_details_component_1.PostDetailsComponent },
+    { path: 'edit/:id', component: edit_post_component_1.EditPostComponent },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

@@ -22,6 +22,8 @@ var login_component_1 = require("./login/login.component");
 var side_bar_component_1 = require("./side-bar/side-bar.component");
 var post_details_component_1 = require("./post-details/post-details.component");
 var auth_interceptor_1 = require("./common/auth-interceptor");
+var ng_image_slider_1 = require("ng-image-slider");
+var animations_1 = require("@angular/platform-browser/animations");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -43,7 +45,9 @@ var AppModule = /** @class */ (function () {
                 http_1.HttpClientModule,
                 forms_1.FormsModule,
                 app_routing_module_1.AppRoutingModule,
-                forms_1.ReactiveFormsModule
+                forms_1.ReactiveFormsModule,
+                ng_image_slider_1.NgImageSliderModule,
+                animations_1.BrowserAnimationsModule
             ],
             providers: [
                 {

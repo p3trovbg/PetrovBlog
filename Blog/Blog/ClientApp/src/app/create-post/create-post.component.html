@@ -1,0 +1,31 @@
+<div class="row justify-content-md-center form">
+    <div class="col-8 align-middle">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <h3>Login as Administrator</h3>
+          <p [ngStyle]="{'color': 'red'}" *ngIf="errorMessage">{{errorMessage}}</p>
+            <div class="form-group">
+              <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              <ng-container *ngIf="loginForm.controls['email'].touched &&
+                                   loginForm.controls['email'].errors?.required &&
+                                   loginForm.controls['email'].invalid">
+                <p [ngStyle]="{'color': 'red'}">
+                  The email is required!
+                </p>
+              </ng-container>
+            </div>
+            <br>
+            <div class="form-group">
+              <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              <ng-container *ngIf="loginForm.controls['password'].touched &&
+                                   loginForm.controls['password'].errors?.required &&
+                                   loginForm.controls['password'].invalid">
+                <p [ngStyle]="{'color': 'red'}">
+                  The password is required!
+                </p>
+              </ng-container>
+            </div>
+            <hr>
+            <button [disabled]="loginForm.invalid" type="submit" class="btn btn-success">Login</button>
+          </form>
+    </div>
+  </div>
