@@ -11,12 +11,15 @@ namespace Blog.Services
         private const string NullPostException = "The post does not exist!";
 
         private readonly IRepository<Post> postRepository;
+        private readonly IImageService imageService;
         private readonly IMapper mapper;
 
         public PostService(
             IRepository<Post> postRepository,
+            IImageService imageService,
             IMapper mapper)
         {
+            this.imageService = imageService;
             this.postRepository = postRepository;
             this.mapper = mapper;
         }
@@ -27,11 +30,30 @@ namespace Blog.Services
             var newPost = this.mapper.Map<Post>(model);
             newPost.AuthorId = userId;
 
+            var newImage = await this.imageService.UploadImage(model.MainImage!, newPost);
+            newPost.MainImageUrl = newImage.Url;
+            await AddImageCollection(model, newPost);
+
+            // TODO: Add for videos
+
             await this.postRepository.AddAsync(newPost);
             await this.postRepository.SaveChangesAsync();
 
             return newPost.Id.ToString();
         }
+
+        private async Task AddImageCollection(ImportPostView model, Post newPost)
+        {
+            if (model.Images != null)
+            {
+                foreach (var image in model.Images)
+                {
+                    var newUploadedImage = await this.imageService.UploadImage(image, newPost);
+                    newPost.Images!.Add(newUploadedImage);
+                }
+            }
+        }
+
         public async Task<T> GetById<T>(string id)
         {
             var post = await this.postRepository.AllAsNoTracking()
@@ -48,6 +70,7 @@ namespace Blog.Services
         public async Task<IEnumerable<T>> All<T>()
         {
             var posts = await this.postRepository.AllAsNoTracking()
+                .Where(x => x.IsDeleted == false)
                 .Include(x => x.Author)
                 .ToListAsync();
 
