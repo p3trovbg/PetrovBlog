@@ -1,31 +1,59 @@
 <div class="row justify-content-md-center form">
     <div class="col-8 align-middle">
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <h3>Login as Administrator</h3>
+      <form [formGroup]="createForm" (ngSubmit)="createPost()">
+        <h3>Create post</h3>
           <p [ngStyle]="{'color': 'red'}" *ngIf="errorMessage">{{errorMessage}}</p>
             <div class="form-group">
-              <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-              <ng-container *ngIf="loginForm.controls['email'].touched &&
-                                   loginForm.controls['email'].errors?.required &&
-                                   loginForm.controls['email'].invalid">
-                <p [ngStyle]="{'color': 'red'}">
-                  The email is required!
+              <input type="title" formControlName="title" class="form-control" aria-describedby="titleHelp" placeholder="Enter title">
+              <ng-container *ngIf="createForm.controls['title'].touched &&
+                                   createForm.controls['title'].errors?.required &&
+                                   createForm.controls['title'].invalid">
+                <p class="warning">
+                  The title is required!
                 </p>
               </ng-container>
             </div>
             <br>
             <div class="form-group">
-              <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-              <ng-container *ngIf="loginForm.controls['password'].touched &&
-                                   loginForm.controls['password'].errors?.required &&
-                                   loginForm.controls['password'].invalid">
-                <p [ngStyle]="{'color': 'red'}">
-                  The password is required!
+              <input type="content" formControlName="content" class="form-control" id="exampleInputPassword1" placeholder="Enter content">
+              <ng-container *ngIf="createForm.controls['content'].touched &&
+                                   createForm.controls['content'].errors?.required &&
+                                   createForm.controls['content'].invalid">
+                <p class="warning">
+                  The content is required!
                 </p>
               </ng-container>
             </div>
+            <br>
+            <div class="file-upload">
+              <label for="file-upload" class="custom-file-upload">
+                <mat-icon>add_circle</mat-icon>Upload images
+            </label>
+              <input id="file-upload" (change)="this.onFileChange($event)" type="file" class="file-upload" multiple>
+           </div>
+           <!-- <div class="file-upload">
+              for videos
+            {{imageFiles ? '' : "No file uploaded yet."}}
+            <label for="file-upload" class="custom-file-upload">
+              <mat-icon>add_circle</mat-icon>Upload videos
+          </label>
+            <input id="file-upload" (change)="this.onFilechange($event)" type="file" class="file-upload" multiple>
+         </div> -->
             <hr>
-            <button [disabled]="loginForm.invalid" type="submit" class="btn btn-success">Login</button>
+            <button [disabled]="createForm.invalid" type="submit" class="btn btn-success">Create</button>
           </form>
+          <div *ngIf="imageUrls?.length != 0">
+            <hr>
+            <h1>Should select main image</h1>
+            <a class="images" *ngFor="let imageUrl of imageUrls">
+              <button 
+                type="button" 
+                (click)="mainImageHandle(imageUrl)" 
+                class="select-main-image">
+                {{isSelected(imageUrl) ? 'Selected' : 'Select as main'}}
+            </button>
+              <img class="upload-images" src="{{imageUrl}}">
+            </a>
+          </div>
     </div>
   </div>

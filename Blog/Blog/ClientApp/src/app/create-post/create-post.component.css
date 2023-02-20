@@ -1,0 +1,46 @@
+.upload-images {
+    width: 20rem;
+    border: none;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.upload-images:active {
+    transform: translate(-50%, -50%) scaleX(1);
+    transition: transform 0.5s 0.4s ease-out;
+    width: 50rem;
+}
+
+.custom-file-upload {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.warning {
+    color: red;
+    font-style: italic;
+}
+
+.file-upload {
+    margin: 5px;
+    border-left:solid rgb(0 0 0 / 34%) 2px
+}
+
+.select-main-image {
+    background-color: #9cb9d6;
+    display: block;
+    color: #3f70a2;
+    font-size: 15px;
+    cursor: pointer;
+    position: absolute;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.selected {
+    color: red;
+}
