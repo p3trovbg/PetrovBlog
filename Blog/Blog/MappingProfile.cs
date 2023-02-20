@@ -13,7 +13,11 @@ namespace Blog
             CreateMap<ImportPostView, Post>()
                 .ForMember(
                 d => d.CreatedOn,
-                mo => mo.MapFrom(x => DateTime.UtcNow));
+                mo => mo.MapFrom(x => DateTime.UtcNow))
+                .ForMember(
+                d => d.Images, mo => mo.Ignore())
+                .ForMember(
+                d => d.Videos, mo => mo.Ignore());
 
             CreateMap<Post, DetailPostViewModel>();
 
