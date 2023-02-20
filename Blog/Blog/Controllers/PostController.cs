@@ -4,6 +4,8 @@ using Blog.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using System.Net;
 using System.Security.Claims;
 
 namespace Blog.Controllers
@@ -48,15 +50,15 @@ namespace Blog.Controllers
 
         [HttpPost]
         [Route(nameof(Add))]
-        public async Task<IActionResult> Add(ImportPostView model)
+        public async Task<IActionResult> Add([FromForm] ImportPostView data)
         {
             if (!this.ModelState.IsValid)
             {
-                return BadRequest(model);
+                return BadRequest(data);
             }
 
             var userId = this.GetUserId();
-            var postId = await this.postService.Add(model, userId);
+            var postId = await this.postService.Add(data, userId);
 
             return this.Ok(postId);
         }
