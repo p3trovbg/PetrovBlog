@@ -3,6 +3,7 @@ using Blog.Data;
 using Blog.Data.EfRepository;
 using Blog.Data.Models;
 using Blog.Services;
+using CloudinaryDotNet;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -72,6 +73,17 @@ namespace Blog
                 mc.AddProfile(new MappingProfile());
             });
 
+            var cloudName = configuration.GetValue<string>("AccountSettings:CloudName");
+            var apiKey = configuration.GetValue<string>("AccountSettings:ApiKey");
+            var apiSecret = configuration.GetValue<string>("AccountSettings:ApiSecret");
+
+            if (new[] { cloudName, apiKey, apiSecret }.Any(string.IsNullOrWhiteSpace))
+            {
+                throw new ArgumentException("Please specify Cloudinary account details!");
+            }
+
+            services.AddSingleton(new Cloudinary(new Account(cloudName, apiKey, apiSecret)));
+
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
@@ -79,6 +91,8 @@ namespace Blog
             services.AddSingleton(configuration);
 
             services.AddTransient<IPostService, PostService>();
+            services.AddTransient<IImageService, ImageService>();
+            services.AddTransient<ICloudinaryService, CloudinaryService>();
         }
 
         private static void Configure(WebApplication app)
