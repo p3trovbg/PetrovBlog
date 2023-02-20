@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 exports.PostService = void 0;
+var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
 var global_component_1 = require("../global-component");
 var PostService = /** @class */ (function () {
@@ -14,6 +15,9 @@ var PostService = /** @class */ (function () {
         this.httpClient = httpClient;
         this.url = '/post/';
         this.allUrl = '/post/all';
+        this.HttpUploadOptions = {
+            headers: new http_1.HttpHeaders({ "Content-Type": "multipart/form-data" })
+        };
     }
     PostService.prototype.getById = function (id) {
         return this.httpClient.get(global_component_1.GlobalComponent.appUrl + this.url + id);
@@ -22,17 +26,14 @@ var PostService = /** @class */ (function () {
         return this.httpClient.get(global_component_1.GlobalComponent.appUrl + this.allUrl);
     };
     PostService.prototype.add = function (newPost) {
-        return this.httpClient.post(global_component_1.GlobalComponent.appUrl + this.url, newPost);
+        console.log(JSON.stringify(newPost));
+        return this.httpClient.post(global_component_1.GlobalComponent.appUrl + this.url + 'add', newPost);
     };
     PostService.prototype.edit = function (editPost) {
         return this.httpClient.put(global_component_1.GlobalComponent.appUrl + this.url, editPost);
     };
     PostService.prototype["delete"] = function (id) {
         return this.httpClient["delete"](global_component_1.GlobalComponent.appUrl + this.url + id);
-    };
-    PostService.prototype.handleError = function (error) {
-        var errMsg = (error.message) ? error.message : error.status ? error.status + " - " + error.statusText : 'Server error';
-        return error;
     };
     PostService = __decorate([
         core_1.Injectable({

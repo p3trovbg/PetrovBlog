@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { GlobalComponent } from '../global-component';
@@ -7,11 +7,16 @@ import { IPost } from './shared/post';
 @Injectable({
   providedIn: 'root'
 })
+
 export class PostService {
   private url = '/post/'
   private allUrl = '/post/all'
 
   constructor(private httpClient: HttpClient) { 
+  }
+
+  HttpUploadOptions = {
+    headers: new HttpHeaders({ "Content-Type": "multipart/form-data" })
   }
 
   getById<T>(id: string): Observable<T> {
@@ -22,8 +27,9 @@ export class PostService {
     return this.httpClient.get<T>(GlobalComponent.appUrl + this.allUrl);
   }
 
-  add(newPost: IPost): Observable<string> { // should has interface
-    return this.httpClient.post<string>(GlobalComponent.appUrl + this.url, newPost);
+  add(newPost: FormData): Observable<string> {
+    console.log(JSON.stringify(newPost));
+    return this.httpClient.post<string>(GlobalComponent.appUrl + this.url +'add', newPost);
   }
 
   edit(editPost: IPost): Observable<string> { // should has interface with id
@@ -32,11 +38,6 @@ export class PostService {
 
   delete(id: string): Observable<unknown> {
     return this.httpClient.delete<unknown>(GlobalComponent.appUrl + this.url + id)
-  }
-
-  private handleError(error: any) { 
-    let errMsg = (error.message) ? error.message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    return error;
   }
 }
 
