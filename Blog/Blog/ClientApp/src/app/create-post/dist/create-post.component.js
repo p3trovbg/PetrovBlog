@@ -47,7 +47,7 @@ var CreatePostComponent = /** @class */ (function () {
             }
         });
         this.postService.add(newPost)
-            .subscribe(function (postId) { return _this.router.navigateByUrl("/detail/" + postId); });
+            .subscribe(function (postId) { return _this.router.navigate((['/detail', { id: postId }])); });
     };
     CreatePostComponent.prototype.mainImageHandle = function (url) {
         var _a, _b;

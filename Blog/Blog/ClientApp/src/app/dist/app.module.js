@@ -24,6 +24,9 @@ var post_details_component_1 = require("./post-details/post-details.component");
 var auth_interceptor_1 = require("./common/auth-interceptor");
 var ng_image_slider_1 = require("ng-image-slider");
 var animations_1 = require("@angular/platform-browser/animations");
+var common_1 = require("@angular/common");
+var create_post_component_1 = require("./create-post/create-post.component");
+var edit_post_component_1 = require("./edit-post/edit-post.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -37,10 +40,13 @@ var AppModule = /** @class */ (function () {
                 about_me_component_1.AboutMeComponent,
                 login_component_1.LoginComponent,
                 side_bar_component_1.SideBarComponent,
-                post_details_component_1.PostDetailsComponent
+                post_details_component_1.PostDetailsComponent,
+                create_post_component_1.CreatePostComponent,
+                edit_post_component_1.EditPostComponent
             ],
             imports: [
                 icon_1.MatIconModule,
+                common_1.CommonModule,
                 platform_browser_1.BrowserModule,
                 http_1.HttpClientModule,
                 forms_1.FormsModule,

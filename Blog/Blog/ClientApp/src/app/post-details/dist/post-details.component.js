@@ -9,8 +9,9 @@ exports.__esModule = true;
 exports.PostDetailsComponent = void 0;
 var core_1 = require("@angular/core");
 var PostDetailsComponent = /** @class */ (function () {
-    function PostDetailsComponent(activatedRoute, postService, loginService) {
+    function PostDetailsComponent(activatedRoute, router, postService, loginService) {
         this.activatedRoute = activatedRoute;
+        this.router = router;
         this.postService = postService;
         this.loginService = loginService;
         this.postId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -35,6 +36,11 @@ var PostDetailsComponent = /** @class */ (function () {
             },
             error: function (err) { return _this.errorMessage = err.error; }
         });
+    };
+    PostDetailsComponent.prototype.deleteHandle = function (id) {
+        var _this = this;
+        this.postService["delete"](id)
+            .subscribe(function () { return _this.router.navigateByUrl('/posts'); });
     };
     PostDetailsComponent = __decorate([
         core_1.Component({

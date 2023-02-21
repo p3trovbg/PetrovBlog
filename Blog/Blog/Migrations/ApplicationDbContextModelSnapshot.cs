@@ -114,7 +114,7 @@ namespace Blog.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Images");
+                    b.ToTable("Images", (string)null);
                 });
 
             modelBuilder.Entity("Blog.Data.Models.Post", b =>
@@ -152,7 +152,7 @@ namespace Blog.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("Blog.Data.Models.Video", b =>
@@ -175,7 +175,7 @@ namespace Blog.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Videos");
+                    b.ToTable("Videos", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

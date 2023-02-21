@@ -79,7 +79,11 @@ namespace Blog.Services
 
         public async Task Delete(string id)
         {
-            var targetPost = await this.postRepository.All().Where(x => x.Id.ToString() == id).FirstOrDefaultAsync();
+            var targetPost = await this.postRepository
+                .All()
+                .Where(x => x.Id.ToString() == id)
+                .FirstOrDefaultAsync();
+
             IsNull(targetPost);
             targetPost!.IsDeleted = true;
 

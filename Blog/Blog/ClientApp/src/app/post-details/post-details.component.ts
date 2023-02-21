@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../common/login.service';
 import { PostService } from '../common/post.service';
 import { IPostDetail } from '../common/shared/post-details';
@@ -16,6 +16,7 @@ export class PostDetailsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private postService: PostService,
     private loginService: LoginService) {
     this.postId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -37,6 +38,11 @@ export class PostDetailsComponent implements OnInit {
         },
         error: (err: any) => this.errorMessage = err.error,
       })
+  }
+
+  deleteHandle(id: string) {
+    this.postService.delete(id)
+    .subscribe(() => this.router.navigateByUrl('/posts'));
   }
 }
 

@@ -41,7 +41,7 @@ export class CreatePostComponent {
       }
     });
     this.postService.add(newPost)
-    .subscribe(postId => this.router.navigateByUrl(`/detail/${postId}`));
+    .subscribe(postId => this.router.navigate((['/detail', { id: postId }])));
   }
 
   mainImageHandle(url: any) {

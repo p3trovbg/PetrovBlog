@@ -16,6 +16,9 @@ import { PostDetailsComponent } from './post-details/post-details.component';
 import { AuthInterceptor } from './common/auth-interceptor';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { CreatePostComponent } from './create-post/create-post.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
 
 @NgModule({
   declarations: [
@@ -26,10 +29,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AboutMeComponent,
     LoginComponent,
     SideBarComponent,
-    PostDetailsComponent
+    PostDetailsComponent,
+    CreatePostComponent,
+    EditPostComponent
   ],
   imports: [
     MatIconModule,
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,

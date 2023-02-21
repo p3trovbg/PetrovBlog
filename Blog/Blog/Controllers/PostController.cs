@@ -50,22 +50,22 @@ namespace Blog.Controllers
 
         [HttpPost]
         [Route(nameof(Add))]
-        public async Task<IActionResult> Add([FromForm] ImportPostView data)
+        public async Task<IActionResult> Add([FromForm] ImportPostView model)
         {
             if (!this.ModelState.IsValid)
             {
-                return BadRequest(data);
+                return BadRequest(model);
             }
 
             var userId = this.GetUserId();
-            var postId = await this.postService.Add(data, userId);
+            var postId = await this.postService.Add(model, userId);
 
             return this.Ok(postId);
         }
 
         [HttpPut]
         [Route(nameof(Edit))]
-        public async Task<IActionResult> Edit(EditPostView model)
+        public async Task<IActionResult> Edit([FromForm] EditPostView model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -77,8 +77,7 @@ namespace Blog.Controllers
             return this.Ok(model.Id);
         }
 
-        [HttpDelete]
-        [Route(nameof(Delete))]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
             await this.postService.Delete(id);
