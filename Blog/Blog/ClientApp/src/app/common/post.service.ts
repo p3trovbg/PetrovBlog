@@ -28,8 +28,11 @@ export class PostService {
   }
 
   add(newPost: FormData): Observable<string> {
-    console.log(JSON.stringify(newPost));
-    return this.httpClient.post<string>(GlobalComponent.appUrl + this.url +'add', newPost);
+    const result = this.httpClient.post<IPost>(GlobalComponent.appUrl + this.url +'add', newPost)
+    .pipe(
+      map((response) => response.id)
+    );
+    return result;
   }
 
   edit(editPost: IPost): Observable<string> { // should has interface with id

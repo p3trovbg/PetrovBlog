@@ -9,6 +9,7 @@ exports.__esModule = true;
 exports.PostService = void 0;
 var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
+var rxjs_1 = require("rxjs");
 var global_component_1 = require("../global-component");
 var PostService = /** @class */ (function () {
     function PostService(httpClient) {
@@ -26,8 +27,9 @@ var PostService = /** @class */ (function () {
         return this.httpClient.get(global_component_1.GlobalComponent.appUrl + this.allUrl);
     };
     PostService.prototype.add = function (newPost) {
-        console.log(JSON.stringify(newPost));
-        return this.httpClient.post(global_component_1.GlobalComponent.appUrl + this.url + 'add', newPost);
+        var result = this.httpClient.post(global_component_1.GlobalComponent.appUrl + this.url + 'add', newPost)
+            .pipe(rxjs_1.map(function (response) { return response.id; }));
+        return result;
     };
     PostService.prototype.edit = function (editPost) {
         return this.httpClient.put(global_component_1.GlobalComponent.appUrl + this.url, editPost);

@@ -25,7 +25,7 @@ var PostDetailsComponent = /** @class */ (function () {
     });
     PostDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.postService.getById(this.postId)
+        this.subscription = this.postService.getById(this.postId)
             .subscribe({
             next: function (post) {
                 _this.post = post;
@@ -36,6 +36,10 @@ var PostDetailsComponent = /** @class */ (function () {
             },
             error: function (err) { return _this.errorMessage = err.error; }
         });
+    };
+    PostDetailsComponent.prototype.ngOnDestroy = function () {
+        var _a;
+        (_a = this.subscription) === null || _a === void 0 ? void 0 : _a.unsubscribe();
     };
     PostDetailsComponent.prototype.deleteHandle = function (id) {
         var _this = this;

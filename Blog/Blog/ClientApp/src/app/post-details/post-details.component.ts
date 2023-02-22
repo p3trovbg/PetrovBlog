@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { LoginService } from '../common/login.service';
 import { PostService } from '../common/post.service';
 import { IPostDetail } from '../common/shared/post-details';
@@ -9,10 +10,11 @@ import { IPostDetail } from '../common/shared/post-details';
   templateUrl: './post-details.component.html',
   styleUrls: ['./post-details.component.css']
 })
-export class PostDetailsComponent implements OnInit {
+export class PostDetailsComponent implements OnInit, OnDestroy {
   private postId: any;
   post?: IPostDetail;
   errorMessage?: string;
+  subscription?: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -27,7 +29,7 @@ export class PostDetailsComponent implements OnInit {
      }
      
   ngOnInit(): void {
-    this.postService.getById<IPostDetail>(this.postId)
+    this.subscription = this.postService.getById<IPostDetail>(this.postId)
       .subscribe( {
         next: (post: IPostDetail) => {
           this.post = post
@@ -38,6 +40,10 @@ export class PostDetailsComponent implements OnInit {
         },
         error: (err: any) => this.errorMessage = err.error,
       })
+  }
+
+  ngOnDestroy(): void {
+      this.subscription?.unsubscribe();
   }
 
   deleteHandle(id: string) {

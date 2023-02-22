@@ -21,6 +21,7 @@ var CreatePostComponent = /** @class */ (function () {
         this.router = router;
         this.fb = fb;
         this.postService = postService;
+        this.isLoading = false;
         this.errorMessage = '';
         this.selectedImageIdx = 0;
         this.imageFiles = [];
@@ -34,7 +35,6 @@ var CreatePostComponent = /** @class */ (function () {
         });
     }
     CreatePostComponent.prototype.createPost = function () {
-        // this.createForm.get('images')?.setValue(this.imageFiles);
         var _this = this;
         var _a;
         var newPost = new FormData();
@@ -46,8 +46,14 @@ var CreatePostComponent = /** @class */ (function () {
                 newPost.append('images', image);
             }
         });
-        this.postService.add(newPost)
-            .subscribe(function (postId) { return _this.router.navigate((['/detail', { id: postId }])); });
+        this.postService.add(newPost).subscribe({
+            next: function (postId) {
+                _this.isLoading = true;
+                _this.router.navigate(['/detail/', postId]);
+                _this.isLoading = false;
+            },
+            error: function (er) { return _this.errorMessage = er; }
+        });
     };
     CreatePostComponent.prototype.mainImageHandle = function (url) {
         var _a, _b;

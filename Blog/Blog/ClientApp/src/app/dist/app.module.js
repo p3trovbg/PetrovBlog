@@ -13,6 +13,11 @@ var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/common/http");
 var app_routing_module_1 = require("./app-routing.module");
 var icon_1 = require("@angular/material/icon");
+var progress_bar_1 = require("@angular/material/progress-bar");
+var animations_1 = require("@angular/platform-browser/animations");
+var auth_interceptor_1 = require("./common/auth-interceptor");
+var ng_image_slider_1 = require("ng-image-slider");
+var common_1 = require("@angular/common");
 var app_component_1 = require("./app.component");
 var nav_menu_component_1 = require("./nav-menu/nav-menu.component");
 var home_component_1 = require("./home/home.component");
@@ -21,10 +26,6 @@ var about_me_component_1 = require("./about-me/about-me.component");
 var login_component_1 = require("./login/login.component");
 var side_bar_component_1 = require("./side-bar/side-bar.component");
 var post_details_component_1 = require("./post-details/post-details.component");
-var auth_interceptor_1 = require("./common/auth-interceptor");
-var ng_image_slider_1 = require("ng-image-slider");
-var animations_1 = require("@angular/platform-browser/animations");
-var common_1 = require("@angular/common");
 var create_post_component_1 = require("./create-post/create-post.component");
 var edit_post_component_1 = require("./edit-post/edit-post.component");
 var AppModule = /** @class */ (function () {
@@ -53,7 +54,8 @@ var AppModule = /** @class */ (function () {
                 app_routing_module_1.AppRoutingModule,
                 forms_1.ReactiveFormsModule,
                 ng_image_slider_1.NgImageSliderModule,
-                animations_1.BrowserAnimationsModule
+                animations_1.BrowserAnimationsModule,
+                progress_bar_1.MatProgressBarModule
             ],
             providers: [
                 {

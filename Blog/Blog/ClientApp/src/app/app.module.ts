@@ -4,6 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import {MatIconModule} from '@angular/material/icon';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthInterceptor } from './common/auth-interceptor';
+import { NgImageSliderModule } from 'ng-image-slider';
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -13,10 +18,6 @@ import { AboutMeComponent } from './about-me/about-me.component';
 import { LoginComponent } from './login/login.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
-import { AuthInterceptor } from './common/auth-interceptor';
-import { NgImageSliderModule } from 'ng-image-slider';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 
@@ -42,7 +43,8 @@ import { EditPostComponent } from './edit-post/edit-post.component';
     AppRoutingModule,
     ReactiveFormsModule,
     NgImageSliderModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatProgressBarModule
   ],
   providers: [
     {

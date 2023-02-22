@@ -16,7 +16,7 @@
     width: 6rem;
     float: right;
     display: inherit;
-    margin-top: 10px;
+    margin: 5px;
   }
 
   .content p {
@@ -34,8 +34,4 @@
   .post {
     width: 100% !important;
     max-width: fit-content;
-  }
-
-  ng-image-slider img {
-    width: 100%;
   }

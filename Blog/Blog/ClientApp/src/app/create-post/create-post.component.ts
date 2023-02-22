@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { error } from 'console';
 import { PostService } from '../common/post.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { PostService } from '../common/post.service';
 })
 export class CreatePostComponent {
   createForm: FormGroup;
+  isLoading = false;
   errorMessage = '';
   selectedImageIdx: number = 0;
   selectedElement: any;
@@ -27,8 +29,6 @@ export class CreatePostComponent {
   }
 
   createPost() {
-    // this.createForm.get('images')?.setValue(this.imageFiles);
-
     const newPost = new FormData();
     newPost.append('title', this.createForm.value.title);
     newPost.append('content', this.createForm.value.content);
@@ -40,8 +40,15 @@ export class CreatePostComponent {
         newPost.append('images', image);
       }
     });
-    this.postService.add(newPost)
-    .subscribe(postId => this.router.navigate((['/detail', { id: postId }])));
+
+    this.postService.add(newPost).subscribe({
+      next:(postId) => {
+        this.isLoading = true;
+        this.router.navigate(['/detail/', postId]);
+        this.isLoading = false;
+      },
+      error:(er) => this.errorMessage = er
+    })
   }
 
   mainImageHandle(url: any) {

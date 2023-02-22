@@ -2,13 +2,13 @@
     <div class="col-8 align-middle">
       <form [formGroup]="createForm" (ngSubmit)="createPost()">
         <h3>Create post</h3>
-          <p [ngStyle]="{'color': 'red'}" *ngIf="errorMessage">{{errorMessage}}</p>
-            <div class="form-group">
-              <input type="title" formControlName="title" class="form-control" aria-describedby="titleHelp" placeholder="Enter title">
-              <ng-container *ngIf="createForm.controls['title'].touched &&
-                                   createForm.controls['title'].errors?.required &&
+        <p [ngStyle]="{'color': 'red'}" *ngIf="errorMessage">{{errorMessage}}</p>
+        <div class="form-group">
+          <input type="title" formControlName="title" class="form-control" aria-describedby="titleHelp" placeholder="Enter title">
+          <ng-container *ngIf="createForm.controls['title'].touched &&
+          createForm.controls['title'].errors?.required &&
                                    createForm.controls['title'].invalid">
-                <p class="warning">
+                                   <p class="warning">
                   The title is required!
                 </p>
               </ng-container>
@@ -17,43 +17,44 @@
             <div class="form-group">
               <input type="content" formControlName="content" class="form-control" id="exampleInputPassword1" placeholder="Enter content">
               <ng-container *ngIf="createForm.controls['content'].touched &&
-                                   createForm.controls['content'].errors?.required &&
-                                   createForm.controls['content'].invalid">
-                <p class="warning">
-                  The content is required!
-                </p>
-              </ng-container>
-            </div>
+              createForm.controls['content'].errors?.required &&
+              createForm.controls['content'].invalid">
+              <p class="warning">
+                The content is required!
+              </p>
+            </ng-container>
+          </div>
             <br>
             <div class="file-upload">
               <label for="file-upload" class="custom-file-upload">
-                <mat-icon>add_circle</mat-icon>Upload images
-            </label>
+                <mat-icon class="upload-button">add_circle</mat-icon>Upload images
+              </label>
               <input id="file-upload" (change)="this.onFileChange($event)" type="file" class="file-upload" multiple>
-           </div>
-           <!-- <div class="file-upload">
+            </div>
+            <!-- <div class="file-upload">
               for videos
-            {{imageFiles ? '' : "No file uploaded yet."}}
-            <label for="file-upload" class="custom-file-upload">
-              <mat-icon>add_circle</mat-icon>Upload videos
-          </label>
-            <input id="file-upload" (change)="this.onFilechange($event)" type="file" class="file-upload" multiple>
-         </div> -->
+              {{imageFiles ? '' : "No file uploaded yet."}}
+              <label for="file-upload" class="custom-file-upload">
+                <mat-icon>add_circle</mat-icon>Upload videos  
+              </label>
+              <input id="file-upload" (change)="this.onFilechange($event)" type="file" class="file-upload" multiple>
+            </div> -->
             <hr>
             <button [disabled]="createForm.invalid" type="submit" class="btn btn-success">Create</button>
           </form>
+          <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
           <div *ngIf="imageUrls?.length != 0">
             <hr>
             <h1>Should select main image</h1>
             <a class="images" *ngFor="let imageUrl of imageUrls">
               <button 
-                type="button" 
-                (click)="mainImageHandle(imageUrl)" 
-                class="select-main-image">
-                {{isSelected(imageUrl) ? 'Selected' : 'Select as main'}}
+              type="button" 
+              (click)="mainImageHandle(imageUrl)" 
+              class="select-main-image">
+              {{isSelected(imageUrl) ? 'Selected' : 'Select as main'}}
             </button>
-              <img class="upload-images" src="{{imageUrl}}">
-            </a>
-          </div>
+            <img class="upload-images" src="{{imageUrl}}">
+          </a>
+        </div>
+      </div>
     </div>
-  </div>

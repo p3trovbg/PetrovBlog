@@ -1,1 +1,61 @@
-<p>edit-post works!</p>
+<div class="row justify-content-md-center form">
+    <div *ngIf="targetPost" class="col-8 align-middle">
+
+      <form [formGroup]="editForm" (ngSubmit)="editPost()">
+        <h3>Edit post</h3>
+        <img class="main-image" src="{{targetPost.mainImageUrl}}">
+        <p [ngStyle]="{'color': 'red'}" *ngIf="errorMessage">{{errorMessage}}</p>
+        <div class="form-group">
+          <input type="title" formControlName="title" class="form-control" aria-describedby="titleHelp" placeholder="Enter title">
+          <ng-container *ngIf="editForm.controls['title'].touched &&
+          editForm.controls['title'].errors?.required &&
+                                   editForm.controls['title'].invalid">
+                                   <p class="warning">
+                  The title is required!
+                </p>
+              </ng-container>
+            </div>
+            <br>
+            <div class="form-group">
+              <input type="content" formControlName="content" class="form-control" id="exampleInputPassword1" placeholder="Enter content">
+              <ng-container *ngIf="editForm.controls['content'].touched &&
+              editForm.controls['content'].errors?.required &&
+              editForm.controls['content'].invalid">
+              <p class="warning">
+                The content is required!
+              </p>
+            </ng-container>
+          </div>
+            <br>
+            <div class="file-upload">
+              <label for="file-upload" class="custom-file-upload">
+                <mat-icon class="upload-button">add_circle</mat-icon>Upload images
+              </label>
+              <input id="file-upload" (change)="this.onFileChange($event)" type="file" class="file-upload" multiple>
+            </div>
+            <!-- <div class="file-upload">
+              for videos
+              {{imageFiles ? '' : "No file uploaded yet."}}
+              <label for="file-upload" class="custom-file-upload">
+                <mat-icon>add_circle</mat-icon>Upload videos  
+              </label>
+              <input id="file-upload" (change)="this.onFilechange($event)" type="file" class="file-upload" multiple>
+            </div> -->
+            <hr>
+            <button [disabled]="editForm.invalid" type="submit" class="btn btn-success">Edit</button>
+          </form>
+          <div *ngIf="targetPost?.images">
+            <hr>
+            <h1>Should select main image</h1>
+            <a class="images" *ngFor="let image of targetPost!.images">
+              <button 
+              type="button" 
+              (click)="mainImageHandle(image.url)" 
+              class="select-main-image">
+              {{isSelected(image.url) ? 'Selected' : 'Select as main'}}
+            </button>
+            <img class="upload-images" src="{{image.url}}">
+          </a>
+        </div>
+      </div>
+    </div>

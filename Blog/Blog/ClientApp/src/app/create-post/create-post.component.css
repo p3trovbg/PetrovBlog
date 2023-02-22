@@ -44,3 +44,7 @@ input[type="file"] {
 .selected {
     color: red;
 }
+
+.upload-button {
+    color: green;
+}

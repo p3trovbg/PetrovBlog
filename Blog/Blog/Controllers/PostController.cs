@@ -60,7 +60,7 @@ namespace Blog.Controllers
             var userId = this.GetUserId();
             var postId = await this.postService.Add(model, userId);
 
-            return this.Ok(postId);
+            return this.Ok(new { id = postId });
         }
 
         [HttpPut]
@@ -74,7 +74,7 @@ namespace Blog.Controllers
 
             await this.postService.Edit(model);
 
-            return this.Ok(model.Id);
+            return this.Ok(new { id = model.Id });
         }
 
         [HttpDelete("{id}")]
