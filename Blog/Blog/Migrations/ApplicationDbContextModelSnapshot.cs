@@ -103,7 +103,7 @@ namespace Blog.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("PostId")
+                    b.Property<Guid?>("PostId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Url")
@@ -114,7 +114,7 @@ namespace Blog.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Images", (string)null);
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Blog.Data.Models.Post", b =>
@@ -152,7 +152,7 @@ namespace Blog.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Posts", (string)null);
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("Blog.Data.Models.Video", b =>
@@ -164,7 +164,7 @@ namespace Blog.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("PostId")
+                    b.Property<Guid?>("PostId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Url")
@@ -175,7 +175,7 @@ namespace Blog.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Videos", (string)null);
+                    b.ToTable("Videos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -315,9 +315,7 @@ namespace Blog.Migrations
                 {
                     b.HasOne("Blog.Data.Models.Post", "Post")
                         .WithMany("Images")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PostId");
 
                     b.Navigation("Post");
                 });
@@ -337,9 +335,7 @@ namespace Blog.Migrations
                 {
                     b.HasOne("Blog.Data.Models.Post", "Post")
                         .WithMany("Videos")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PostId");
 
                     b.Navigation("Post");
                 });
