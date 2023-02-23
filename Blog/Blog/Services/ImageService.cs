@@ -1,4 +1,5 @@
-﻿using Blog.Data.EfRepository;
+﻿using AutoMapper;
+using Blog.Data.EfRepository;
 using Blog.Data.Models;
 
 namespace Blog.Services
@@ -7,14 +8,19 @@ namespace Blog.Services
     {
         private readonly IRepository<Image> imageRepository;
         private readonly ICloudinaryService cloudinaryService;
+        private readonly IMapper mapper;
 
-        public ImageService(IRepository<Image> imageRepository, ICloudinaryService cloudinaryService)
+        public ImageService(
+            IRepository<Image> imageRepository, 
+            ICloudinaryService cloudinaryService,
+            IMapper mapper)
         {
             this.imageRepository = imageRepository;
             this.cloudinaryService = cloudinaryService;
+            this.mapper = mapper;
         }
 
-        public async Task<Image> UploadImage(IFormFile imageFile, Post post)
+        public async Task<Image> UploadImage(IFormFile imageFile)
         {
             var image = new Image();
 
@@ -26,10 +32,31 @@ namespace Blog.Services
             }
 
             image.Url = result.Url.ToString();
-            image.Post = post;
 
             await this.imageRepository.AddAsync(image);
             return image;
+        }
+
+        public async Task<IEnumerable<T>> UploadImages<T>(ICollection<IFormFile> imageFile)
+        {
+            var images = new List<Image>();
+            foreach (var file in imageFile)
+            {
+                var image = new Image();
+                var result = await this.cloudinaryService.UploadImageAsync(file, image.Id.ToString());
+                if (result.Error != null)
+                {
+                    throw new InvalidOperationException(result.Error.Message);
+                }
+
+                image.Url = result.Url.ToString();
+                images.Add(image);
+
+                await this.imageRepository.AddAsync(image);
+            }
+
+            await this.imageRepository.SaveChangesAsync();
+            return this.mapper.Map<IEnumerable<T>>(images);
         }
     }
 }
