@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { GlobalComponent } from '../global-component';
 import { IPost } from './shared/post';
@@ -13,10 +14,6 @@ export class PostService {
   private allUrl = '/post/all'
 
   constructor(private httpClient: HttpClient) { 
-  }
-
-  HttpUploadOptions = {
-    headers: new HttpHeaders({ "Content-Type": "multipart/form-data" })
   }
 
   getById<T>(id: string): Observable<T> {
@@ -35,8 +32,8 @@ export class PostService {
     return result;
   }
 
-  edit(editPost: IPost): Observable<string> { // should has interface with id
-    return this.httpClient.put<string>(GlobalComponent.appUrl + this.url, editPost);
+  edit(editPost: FormGroup): Observable<string> {
+    return this.httpClient.put<string>(GlobalComponent.appUrl + this.url, editPost.value);
   }
 
   delete(id: string): Observable<unknown> {
