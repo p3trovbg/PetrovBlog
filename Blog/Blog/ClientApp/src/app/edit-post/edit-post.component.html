@@ -46,14 +46,19 @@
           </form>
           <div *ngIf="targetPost?.images">
             <hr>
-            <h1>Should select main image</h1>
             <a class="images" *ngFor="let image of targetPost!.images">
+              <div class="select-main-image">
+                <button 
+                type="button" 
+                (click)="mainImageHandle(image)" >
+                {{isSelected(image.url) ? 'Selected' : 'Select as main'}}
+              </button>
               <button 
               type="button" 
-              (click)="mainImageHandle(image.url)" 
-              class="select-main-image">
-              {{isSelected(image.url) ? 'Selected' : 'Select as main'}}
+              (click)="removeImageHandle(image)" >
+                Remove
             </button>
+              </div>
             <img class="upload-images" src="{{image.url}}">
           </a>
         </div>

@@ -32,13 +32,16 @@ input[type="file"] {
 }
 
 .select-main-image {
-    background-color: #9cb9d6;
-    display: block;
-    color: #3f70a2;
-    font-size: 15px;
     cursor: pointer;
     position: absolute;
+}
+
+.select-main-image button {
+    border: none;
+    background-color: #9cb9d6;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #3f70a2;
+    font-size: 15px;
 }
 
 .selected {
