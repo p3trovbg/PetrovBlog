@@ -27,6 +27,8 @@ namespace Blog
 
             CreateMap<Video, ContentViewModel>();
 
+            CreateMap<ContentViewModel, Image>();
+
             CreateMap<Image, ContentViewModel>();
         }
     }
