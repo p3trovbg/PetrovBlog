@@ -30,7 +30,7 @@ namespace Blog.Services
             var newPost = this.mapper.Map<Post>(model);
             newPost.AuthorId = userId;
 
-            var newImage = await this.imageService.UploadImage(model.MainImage!, newPost);
+            var newImage = await this.imageService.UploadImage(model.MainImage!);
             newPost.MainImageUrl = newImage.Url;
             await AddImageCollection(model, newPost);
 
@@ -48,7 +48,7 @@ namespace Blog.Services
             {
                 foreach (var image in model.Images)
                 {
-                    var newUploadedImage = await this.imageService.UploadImage(image, newPost);
+                    var newUploadedImage = await this.imageService.UploadImage(image);
                     newPost.Images!.Add(newUploadedImage);
                 }
             }
@@ -100,6 +100,11 @@ namespace Blog.Services
             targetPost!.UpdatedOn = DateTime.UtcNow;
             targetPost.Title = model.Title;
             targetPost.Content = model.Content;
+            targetPost.MainImageUrl = model.MainImage;
+
+            var images = this.mapper.Map<Image[]>(model.Images);
+
+            targetPost.Images = images;
 
             await this.postRepository.SaveChangesAsync();
         }
