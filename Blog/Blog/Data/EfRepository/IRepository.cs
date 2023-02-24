@@ -7,6 +7,8 @@
 
         Task AddAsync(TEntity entity);
 
+        void HardDelete(TEntity entity);
+
         Task<int> SaveChangesAsync();
 
         IQueryable<TEntity> AllAsNoTracking();

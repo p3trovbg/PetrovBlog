@@ -19,6 +19,8 @@ namespace Blog.Data.EfRepository
 
         public Task AddAsync(TEntity entity) => this.DbSet.AddAsync(entity).AsTask();
 
+        public void HardDelete(TEntity entity) => this.DbSet.Remove(entity);
+
         public IQueryable<TEntity> All() => this.DbSet;
 
         public IQueryable<TEntity> AllAsNoTracking() => this.DbSet.AsNoTracking();
@@ -38,5 +40,6 @@ namespace Blog.Data.EfRepository
                 this.Context?.Dispose();
             }
         }
+
     }
 }
