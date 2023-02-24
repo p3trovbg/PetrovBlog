@@ -58,6 +58,11 @@ export class EditPostComponent implements OnInit {
   mainImageHandle(image: string) {
     this.targetPost!.mainImageUrl = image;
     this.editForm.get('mainImage')?.setValue(image);
+  removeImageHandle(targetImage: any) {
+    this.contentService.deleteImage(targetImage.id).subscribe(() => {
+      const result = this.targetPost?.images.filter(image => image.id != targetImage.id);
+      this.targetPost!.images = result!;
+    })
   }
 
   onFileChange(event: any) {
