@@ -64,8 +64,7 @@ namespace Blog.Controllers
         }
 
         [HttpPut]
-        [Route(nameof(Edit))]
-        public async Task<IActionResult> Edit([FromForm] EditPostView model)
+        public async Task<IActionResult> Edit([FromBody] EditPostView model)
         {
             if (!this.ModelState.IsValid)
             {
