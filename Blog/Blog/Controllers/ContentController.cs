@@ -27,5 +27,13 @@ namespace Blog.Controllers
 
             return this.Ok(images);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            await this.imageService.Delete(id);
+
+            return this.Ok();
+        }
     }
 }
