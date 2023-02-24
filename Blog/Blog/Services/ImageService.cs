@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Blog.Data.EfRepository;
 using Blog.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Services
 {
@@ -18,6 +19,17 @@ namespace Blog.Services
             this.imageRepository = imageRepository;
             this.cloudinaryService = cloudinaryService;
             this.mapper = mapper;
+        }
+
+        public async Task Delete(string id)
+        {
+            var image = await this.imageRepository.All().Where(x => x.Id.ToString() == id).FirstOrDefaultAsync();
+            
+            if (image != null)
+            {
+                this.imageRepository.HardDelete(image);
+                await imageRepository.SaveChangesAsync();
+            }
         }
 
         public async Task<Image> UploadImage(IFormFile imageFile)
