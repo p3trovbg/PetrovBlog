@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import {MatIconModule} from '@angular/material/icon';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './common/auth-interceptor';
 import { NgImageSliderModule } from 'ng-image-slider';
@@ -44,7 +43,6 @@ import { EditPostComponent } from './edit-post/edit-post.component';
     ReactiveFormsModule,
     NgImageSliderModule,
     BrowserAnimationsModule,
-    MatProgressBarModule
   ],
   providers: [
     {

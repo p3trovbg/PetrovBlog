@@ -33,7 +33,10 @@ export class PostService {
   }
 
   edit(editPost: FormGroup): Observable<string> {
-    return this.httpClient.put<string>(GlobalComponent.appUrl + this.url, editPost.value);
+    return this.httpClient.put<IPost>(GlobalComponent.appUrl + this.url, editPost.value)
+    .pipe(
+      map((response) => response.id)
+    );
   }
 
   delete(id: string): Observable<unknown> {

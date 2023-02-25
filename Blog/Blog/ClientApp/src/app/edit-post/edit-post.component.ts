@@ -71,7 +71,7 @@ export class EditPostComponent implements OnInit {
            this.router.navigate(['/detail/', postId]);
            this.isLoading = false;
          },
-         error:(er) => this.errorMessage = 'Invalid edit'
+         error:(er) => this.errorMessage = 'Try again'
        })
   };
 

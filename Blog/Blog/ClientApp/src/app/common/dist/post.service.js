@@ -28,7 +28,8 @@ var PostService = /** @class */ (function () {
         return result;
     };
     PostService.prototype.edit = function (editPost) {
-        return this.httpClient.put(global_component_1.GlobalComponent.appUrl + this.url, editPost.value);
+        return this.httpClient.put(global_component_1.GlobalComponent.appUrl + this.url, editPost.value)
+            .pipe(rxjs_1.map(function (response) { return response.id; }));
     };
     PostService.prototype["delete"] = function (id) {
         return this.httpClient["delete"](global_component_1.GlobalComponent.appUrl + this.url + id);

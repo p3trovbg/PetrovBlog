@@ -13,7 +13,6 @@ var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/common/http");
 var app_routing_module_1 = require("./app-routing.module");
 var icon_1 = require("@angular/material/icon");
-var progress_bar_1 = require("@angular/material/progress-bar");
 var animations_1 = require("@angular/platform-browser/animations");
 var auth_interceptor_1 = require("./common/auth-interceptor");
 var ng_image_slider_1 = require("ng-image-slider");
@@ -55,7 +54,6 @@ var AppModule = /** @class */ (function () {
                 forms_1.ReactiveFormsModule,
                 ng_image_slider_1.NgImageSliderModule,
                 animations_1.BrowserAnimationsModule,
-                progress_bar_1.MatProgressBarModule
             ],
             providers: [
                 {
