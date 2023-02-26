@@ -1,11 +1,27 @@
 .side-bar {
     border-left: 5px solid #6784a4;
+    min-height: 100%;
     padding: 5px;
+    display: block;
     position: fixed;
+    width: 40px;
+    box-shadow: 0 5px -2px #888;
 }
 
 @media only screen and (max-width: 600px) {
     .side-bar {
       position: inherit;
     }
+  }
+
+  .fa {
+    padding: 20px;
+    font-size: 50px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    margin: 10px;
+    color: #00000075;
+
   }

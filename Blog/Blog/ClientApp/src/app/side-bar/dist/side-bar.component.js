@@ -8,8 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.SideBarComponent = void 0;
 var core_1 = require("@angular/core");
+var global_component_1 = require("../global-component");
 var SideBarComponent = /** @class */ (function () {
     function SideBarComponent() {
+        this.urls = {
+            github: global_component_1.GlobalComponent.gitHubUrl,
+            linkedIn: global_component_1.GlobalComponent.linkedInUrl,
+            stackOverFlow: global_component_1.GlobalComponent.stackOverFlowUrl
+        };
     }
     SideBarComponent.prototype.ngOnInit = function () {
     };

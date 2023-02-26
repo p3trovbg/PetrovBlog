@@ -20,6 +20,7 @@ import { PostDetailsComponent } from './post-details/post-details.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

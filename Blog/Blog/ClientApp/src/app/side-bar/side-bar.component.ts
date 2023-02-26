@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalComponent } from '../global-component';
 
 @Component({
   selector: 'app-side-bar',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideBarComponent implements OnInit {
 
-  constructor() { }
+  urls = {
+    github: GlobalComponent.gitHubUrl,
+    linkedIn: GlobalComponent.linkedInUrl,
+    stackOverFlow: GlobalComponent.stackOverFlowUrl,
+  }
+  constructor() { 
+
+  }
 
   ngOnInit(): void {
   }
