@@ -25,7 +25,7 @@
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a [routerLink]="['/']">Home</a>
+            <a [routerLink]="['/']" ariaCurrentWhenActive="page">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a [routerLink]="['/posts']"
@@ -33,12 +33,12 @@
             >
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a [routerLink]="['/about']"
+            <a [routerLink]="['/about']" ariaCurrentWhenActive="page"
               >About me</a
             >
           </li>
           <li *ngIf="isLogin" class="nav-item">
-            <a [routerLink]="['/create']"
+            <a [routerLink]="['/create']" ariaCurrentWhenActive="page"
               >Create post</a
             >
           </li>

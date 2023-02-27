@@ -14,6 +14,7 @@ export class PostsComponent implements OnInit {
   http: HttpClient;
   posts: IPost[] = [];
   selectedPost?: IPost;
+  isEmptyCollection = false;
 
   constructor(
     private loginService: LoginService,
@@ -31,7 +32,11 @@ export class PostsComponent implements OnInit {
   }
 
   getAll(): void {
+    this.isEmptyCollection = false;
     this.postService.all<IPost[]>()
-    .subscribe(posts => this.posts = posts);
+    .subscribe({
+      next:(post) => this.posts = post,
+      error:(ex) => this.isEmptyCollection = true,
+    });
   } 
 }

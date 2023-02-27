@@ -1,6 +1,6 @@
 <h1>Posts</h1>
 <hr>
-<p *ngIf="!posts"><em>Loading...</em></p>
+<p *ngIf="isEmptyCollection"><em>There are not posts!</em></p>
 <div *ngFor="let post of posts" class="posts">
     <div class="card col-sm-10 post">
       <img src="{{post.mainImageUrl}}" class="card-img-top img" alt="...">

@@ -9,13 +9,13 @@ import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostsComponent } from './posts/posts.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  { path: 'posts', component: PostsComponent },
-  { path: 'about', component: AboutMeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'create', component: CreatePostComponent },
-  { path: 'detail/:id', component: PostDetailsComponent },
-  { path: 'edit/:id', component: EditPostComponent },
+  {path: '', component: HomeComponent, data: { animation: 'home' }},
+  { path: 'posts', component: PostsComponent,  data: { animation: 'posts' } },
+  { path: 'about', component: AboutMeComponent, data: { animation: 'about' } },
+  { path: 'login', component: LoginComponent, data: { animation: 'login' } },
+  { path: 'create', component: CreatePostComponent, data: { animation: 'create' } },
+  { path: 'detail/:id', component: PostDetailsComponent, data: { animation: 'detail' } },
+  { path: 'edit/:id', component: EditPostComponent, data: { animation: 'edit' } },
 ];
 
 @NgModule({

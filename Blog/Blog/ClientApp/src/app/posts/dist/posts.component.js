@@ -13,6 +13,7 @@ var PostsComponent = /** @class */ (function () {
         this.loginService = loginService;
         this.postService = postService;
         this.posts = [];
+        this.isEmptyCollection = false;
         this.http = http;
     }
     Object.defineProperty(PostsComponent.prototype, "isLogin", {
@@ -27,8 +28,12 @@ var PostsComponent = /** @class */ (function () {
     };
     PostsComponent.prototype.getAll = function () {
         var _this = this;
+        this.isEmptyCollection = false;
         this.postService.all()
-            .subscribe(function (posts) { return _this.posts = posts; });
+            .subscribe({
+            next: function (post) { return _this.posts = post; },
+            error: function (ex) { return _this.isEmptyCollection = true; }
+        });
     };
     PostsComponent = __decorate([
         core_1.Component({

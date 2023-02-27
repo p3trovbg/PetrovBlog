@@ -17,13 +17,13 @@ var login_component_1 = require("./login/login.component");
 var post_details_component_1 = require("./post-details/post-details.component");
 var posts_component_1 = require("./posts/posts.component");
 var routes = [
-    { path: '', component: home_component_1.HomeComponent },
-    { path: 'posts', component: posts_component_1.PostsComponent },
-    { path: 'about', component: about_me_component_1.AboutMeComponent },
-    { path: 'login', component: login_component_1.LoginComponent },
-    { path: 'create', component: create_post_component_1.CreatePostComponent },
-    { path: 'detail/:id', component: post_details_component_1.PostDetailsComponent },
-    { path: 'edit/:id', component: edit_post_component_1.EditPostComponent },
+    { path: '', component: home_component_1.HomeComponent, data: { animation: 'home' } },
+    { path: 'posts', component: posts_component_1.PostsComponent, data: { animation: 'posts' } },
+    { path: 'about', component: about_me_component_1.AboutMeComponent, data: { animation: 'about' } },
+    { path: 'login', component: login_component_1.LoginComponent, data: { animation: 'login' } },
+    { path: 'create', component: create_post_component_1.CreatePostComponent, data: { animation: 'create' } },
+    { path: 'detail/:id', component: post_details_component_1.PostDetailsComponent, data: { animation: 'detail' } },
+    { path: 'edit/:id', component: edit_post_component_1.EditPostComponent, data: { animation: 'edit' } },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

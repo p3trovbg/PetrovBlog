@@ -26,16 +26,16 @@
   background-color: rgb(51 139 212 / 12%);
 }
 
-.posts {
+/* .posts {
   animation-duration: 1.5s;
   animation-name: slidein;
-}
+} */
 
 .post {
   box-shadow: 10px -10px rgba(13, 109, 253, 0.349);
 }
 
-@keyframes slidein {
+/* @keyframes slidein {
   from {
     margin-bottom: 30%;
     width: 80%;
@@ -45,4 +45,4 @@
     margin-left: 0%;
     width: 100%;
   }
-}
+} */

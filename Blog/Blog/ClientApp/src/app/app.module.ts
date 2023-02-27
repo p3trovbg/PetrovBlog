@@ -9,6 +9,7 @@ import { AuthInterceptor } from './common/auth-interceptor';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { CommonModule } from '@angular/common';
 
+
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
