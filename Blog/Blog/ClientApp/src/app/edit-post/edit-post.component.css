@@ -59,3 +59,14 @@ input[type="file"] {
     border-radius: 5%;
     box-shadow: 8px 3px 14px rgb(13 110 253 / 76%);
 }
+
+.back-btn {
+    top:50%;
+    background-color:hsl(142, 6%, 26%);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #fff;
+    border:none; 
+    border-radius:15px; 
+    margin-top: 20px;
+    width: 6rem;
+  }

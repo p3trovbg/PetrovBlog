@@ -1,6 +1,7 @@
 <p class="alert alert-warning" *ngIf="errorMessage">{{errorMessage}}</p>
 <div class="post" *ngIf="post">
     <h1>{{post.title}}</h1>
+    <button *ngIf="!isLogin || isLogin" class="btn" type="button" routerLink='/posts'>Back</button>
     <button *ngIf="isLogin" class="btn" type="button" (click)="deleteHandle(post.id)">Delete</button>
     <button *ngIf="isLogin" class="btn" type="button" routerLink='/edit/{{post.id}}'>Edit</button>
     <img class="main-image" src="{{post.mainImageUrl}}">
