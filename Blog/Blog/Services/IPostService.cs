@@ -13,5 +13,7 @@ namespace Blog.Services
         Task<IEnumerable<T>> All<T>();
 
         Task<T> GetById<T>(string id);
+
+        Task<IEnumerable<T>> GetFiveRecentPosts<T>();
     }
 }

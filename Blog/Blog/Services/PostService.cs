@@ -70,7 +70,7 @@ namespace Blog.Services
         public async Task<IEnumerable<T>> All<T>()
         {
             var posts = await this.postRepository.AllAsNoTracking()
-                .Where(x => x.IsDeleted == false)
+                .Where(x => x.!IsDeleted)
                 .Include(x => x.Author)
                 .ToListAsync();
 
@@ -107,6 +107,18 @@ namespace Blog.Services
             targetPost.Images = images;
 
             await this.postRepository.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetFiveRecentPosts<T>()
+        {
+            var posts = await this.postRepository.AllAsNoTracking()
+              .Where(x => !x.IsDeleted)
+              .OrderByDescending(x => x.CreatedOn)
+              .Take(5)
+              .Include(x => x.Author)
+              .ToListAsync();
+
+            return this.mapper.Map<IEnumerable<T>>(posts);
         }
 
         private void IsNull(Post? targetPost)
