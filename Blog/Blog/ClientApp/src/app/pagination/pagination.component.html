@@ -1,0 +1,10 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <button class="page-link" [class.disabled]="!isHasPrevious" (click)="onPageChange(previous)">Previous</button>
+    </li>
+      <li class="page-item">
+        <button class="page-link" [class.disabled]="!isHasNext" (click)="onPageChange(next)">Next</button>
+    </li>
+    </ul>
+</nav>
