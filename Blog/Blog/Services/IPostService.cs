@@ -10,6 +10,8 @@ namespace Blog.Services
 
         Task Delete(string id);
 
+        int Count();
+
         Task<IEnumerable<T>> All<T>();
 
         Task<T> GetById<T>(string id);

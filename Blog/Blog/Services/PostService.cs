@@ -70,7 +70,7 @@ namespace Blog.Services
         public async Task<IEnumerable<T>> All<T>()
         {
             var posts = await this.postRepository.AllAsNoTracking()
-                .Where(x => x.!IsDeleted)
+                .Where(x => !x.IsDeleted)
                 .Include(x => x.Author)
                 .ToListAsync();
 
@@ -129,5 +129,9 @@ namespace Blog.Services
             }
         }
 
+        public int Count()
+        {
+            return this.postRepository.AllAsNoTracking().Where(x => !x.IsDeleted).Count();
+        }
     }
 }
